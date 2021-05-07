@@ -1,7 +1,35 @@
-public interface Node {
+import java.util.ArrayList;
+public class Node {
+    int id; //id
+    int age; //age of a node
+    double family; //familySize
+    double work; //typical work environment size
+    double friends; //friends of a node
+    double resistance; //resistance to contagion to represent genes
+    enum State{Susceptible,Infected,Recovered} //SIR
+    boolean phoneUser; //MCT or TCT
+    ArrayList<Node> contacts; //close contacts
+    boolean quarantine;
+    //if phoneUser -> androidUser/iPhoneUser
 
+    public Node(int id,int age,double family, double work, double friends, double resistance,boolean phoneUser){
+        this.id = id;
+        this.age = age;
+        this.family = family;
+        this.work = work;
+        this.friends = friends;
+        this.resistance = resistance;
+        this.phoneUser = phoneUser;
+        State state;
+    }
 
+    public void updateNode(){ //update a nodes internal clock to see if it should no longer track a closecontact/be infected/be in quarantine/die?
+        //close contact duration
+        //quarantine duration
+        //infected duration
+    }
 }
+
 /*
  edges til naboer(random generert i en range)
  state frisk/infected/(risikabel?)/immun
@@ -14,5 +42,6 @@ public interface Node {
 
  en node skal kunne puttes i karantene (fjernes midlertidig ut av nettet)
  hastigheten på fra den er smittet til den er i karantene endres. Typ 3-5dager ved TCT, og 1-2dager MCT?
+
 
  */
