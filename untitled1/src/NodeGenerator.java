@@ -17,7 +17,7 @@ public class NodeGenerator {
             age = random.nextInt();
             familyRand = random.nextGaussian();
             workRand = random.nextGaussian();
-            friendRand = (random.nextGaussian()*2.65)+6;
+            friendRand = Math.round((random.nextGaussian()*2.65)+6);
             if(friendRand < 0) friendRand = 0;
             resistanceRand = random.nextGaussian();
             if (i%5==0){
