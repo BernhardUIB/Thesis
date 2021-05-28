@@ -8,8 +8,9 @@ public class NodeGenerator {
     double workRand;
     double friendRand;
     double resistanceRand;
+    ArrayList<Node> friendz;
     ArrayList<Node> nodes;
-    public  NodeGenerator(int N,int I,double P){ //N is number of nodes, I is number of infected, P is percentage of phone users (not probability to be phone user)
+    public  NodeGenerator(int N,int I,int P){ //N is number of nodes, I is number of infected, P is number of phone users (not probability to be phone user)
         nodes = new ArrayList<Node>();
         random = new Random();
 
@@ -27,6 +28,7 @@ public class NodeGenerator {
                 nodes.add(new Node(i,age,familyRand,workRand,friendRand,resistanceRand,false));
             }
         }
+
         //Node a = new Node(1,24,familyRand,workRand,friendRand,resistanceRand,false);
     }
     public ArrayList<Node> createNodes(){

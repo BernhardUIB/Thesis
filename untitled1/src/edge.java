@@ -1,5 +1,15 @@
 public class edge {
+    int startId;
+    int endId;
+    int duration;
 
+
+    public edge(int start, int end){
+        this.startId = start;
+        this.endId = end;
+        this.duration = 14;
+
+    }
 }
 
 /*

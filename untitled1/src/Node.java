@@ -4,7 +4,8 @@ public class Node {
     int age; //age of a node
     double family; //familySize
     double work; //typical work environment size
-    double friends; //friends of a node
+    double friends; //should be number of friends of a node
+    ArrayList<Node> friendz; //should be friends of a node
     double resistance; //resistance to contagion to represent genes
     enum State{Susceptible,Infected,Recovered} //SIR
     boolean phoneUser; //MCT or TCT
@@ -20,7 +21,7 @@ public class Node {
         this.friends = friends;
         this.resistance = resistance;
         this.phoneUser = phoneUser;
-        State state;
+        State state = State.Susceptible;
     }
 
     public void updateNode(){ //update a nodes internal clock to see if it should no longer track a closecontact/be infected/be in quarantine/die?
