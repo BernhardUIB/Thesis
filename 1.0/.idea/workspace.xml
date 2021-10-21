@@ -4,27 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e8aa123-c4bd-43f3-8d59-0780b334809e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled1/src/untitled1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/Node$State.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/Node.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/NodeGenerator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/edge.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/out/production/untitled1/sim.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/src/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/src/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/src/NodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/src/NodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/src/edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/src/edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/src/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/src/main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/src/sim.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/src/sim.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled1/untitled1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled1/Master.iml" afterDir="false" />
+    <list default="true" id="4e8aa123-c4bd-43f3-8d59-0780b334809e" name="Default Changelist" comment="Starting v1.0">
+      <change afterPath="$PROJECT_DIR$/../Graph/src/Graph.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/NodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NodeGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Node$State.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Node$State.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Node.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Node.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/NodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/NodeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/sim.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sim.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Graph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Graph/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,13 +44,15 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Graph" />
     <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -67,7 +62,7 @@
       <recent name="C:\Users\Bernhard\IdeaProjects\1.0\src\main\java" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.main">
     <configuration name="main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="main" />
       <module name="1.0" />
@@ -75,15 +70,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +104,33 @@
       </MavenSettings>
       <method v="2" />
     </configuration>
+    <configuration name="main" type="MavenRunConfiguration" factoryName="Maven">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list />
+            </option>
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.main" />
+      <item itemvalue="Maven.main" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -121,8 +141,32 @@
       <option name="presentableId" value="Default" />
       <updated>1622153550582</updated>
       <workItem from="1622153551823" duration="7696000" />
-      <workItem from="1622190914335" duration="731000" />
+      <workItem from="1622190914335" duration="3629000" />
+      <workItem from="1622396722118" duration="5345000" />
+      <workItem from="1623470948452" duration="594000" />
+      <workItem from="1623552995425" duration="4809000" />
+      <workItem from="1623806891634" duration="2861000" />
+      <workItem from="1634139413470" duration="23401000" />
+      <workItem from="1634222994624" duration="28515000" />
+      <workItem from="1634305104532" duration="9710000" />
+      <workItem from="1634488200606" duration="35515000" />
+      <workItem from="1634671605536" duration="35610000" />
     </task>
+    <task id="LOCAL-00001" summary="Starting v1.0">
+      <created>1622191720426</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622191720426</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Starting v1.0">
+      <created>1622191733644</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1622191733644</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,5 +183,9 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Starting v1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Starting v1.0" />
   </component>
 </project>
