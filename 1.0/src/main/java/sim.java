@@ -1,38 +1,35 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Stack;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.MultiGraph;
 
-import static java.lang.Integer.valueOf;
 
 public class sim {
     int N; //number of people in the simulation
     int I; //number of infected on day0
     int P; //probability of phone
     int T; //duration of simulation in days?
+    boolean uniform;
     NodeGenerator gen;
     ArrayList<Node> nodes;
     ArrayList<Integer> initInf;
     ArrayList<Integer> phoneUsers;
     int rand_user = 0;
-    public sim(int N, int I, int P, int T){
+    public sim(int N, int I, int P, int T, boolean uniform){
         this.N = N;
         this.I = I;
         this.P = P;
         this.T = T;
-
+        this.uniform = uniform;
     }
 
     public ArrayList<ArrayList<Integer>> run(int runNumb) { //number of simulations to be ran with current parameters
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
 
-        for(int simRan = 0; simRan < runNumb; simRan++) { //iterate over multiple sims of same set of nodes.
-            this.gen = new NodeGenerator(N,I,P);
+        for(int simRan = 0; simRan < runNumb; simRan++) { //iterate over multiple sims for same parameters.
+            this.gen = new NodeGenerator(N,I,P,uniform);
             this.initInf = new ArrayList<>();
             this.phoneUsers = new ArrayList<>();
             this.nodes = new ArrayList<>();
@@ -44,11 +41,14 @@ public class sim {
             ArrayList<String> ids = new ArrayList<>();
             Graph graph = new MultiGraph("Network");
             for(Node n: nodes){
+                n.resistance = n.setResistance();
+
                 if(n.friendz < 0) n.friendz = 0;
                 n.friendz = (int)Math.round(n.friendz);
                 ArrayList<Node> list = (ArrayList<Node>) nodes.clone();
                 Collections.shuffle(list);
                 graph.addNode(Integer.toString(n.id));
+                if(uniform)n.friendz = n.friends;
                 while(n.friendz > n.friendList.size()){ //edit friends to friendz for distribution
                     if(list.size() == 0){
                         break;
@@ -80,38 +80,49 @@ public class sim {
                     }
                 }
             }
-            for(int days = 1; days < T; days++) {
+            for(int days = 1; days < T+1; days++) {
+
                 ArrayList<Edge> tempDeleted = new ArrayList<Edge>();
                 ArrayList<Node> infectedToday = new ArrayList<>();
-                //System.out.println("A new day approaches: " + days);
                 for(int w = 0; w < N*5; w++){
                     String s =  String.format("%0"+Integer.toString(T).length()+"d",days)+ String.format("%07d",w);
                     ids.add(s);
                 }
-
                 for(Node n: nodes){
                     int canMeet = n.meetNumber();
                     double randomEncounter = ThreadLocalRandom.current().nextDouble(1);
-                    if(randomEncounter > 0.25){
-                        int randomFriend = ThreadLocalRandom.current().nextInt(0,N);
-                        int friendId = nodes.get(randomFriend).id;
-                        if(friendId == n.id) continue; //Kan ikke møte seg selv
-                        if((nodes.get(friendId).isolated || n.isolated) || (nodes.get(friendId).state == Node.State.Recovered) || (n.quarantined) || nodes.get(friendId).quarantined){
-                            continue;
-                        }
-                        graph.addEdge(ids.get(EdgeCounter),graph.getNode(n.id),graph.getNode(friendId));
-                        EdgeCounter++;
-                        n.contacts.add(friendId);
-                        nodes.get(friendId).contacts.add(n.id);
-
-                        if(n.checkState() == Node.State.Infected || nodes.get(friendId).checkState() == Node.State.Infected) {
-                            if(nodes.get(friendId).resistance > 0) nodes.get(friendId).resistance = ThreadLocalRandom.current().nextDouble(0.65);
-                            if(1-nodes.get(friendId).resistance < 0.45){
-                                nodes.get(friendId).state = Node.State.Infected;
+                    if(randomEncounter > 0.25) {
+                        boolean meet = true;
+                        int meetAttempt = 0;
+                        while (meet && meetAttempt < 5) {
+                            int randomFriend = ThreadLocalRandom.current().nextInt(0, N);
+                            int friendId = nodes.get(randomFriend).id;
+                            if (friendId == n.id) continue; //cannot meet yourself
+                            if ((nodes.get(friendId).isolated || n.isolated) || (nodes.get(friendId).state == Node.State.Recovered)){
+                                meetAttempt++;
+                                continue;
                             }
-                            if(n.resistance > 0) n.resistance = ThreadLocalRandom.current().nextDouble(0.65);
-                            if(1-n.resistance < 0.45){
-                                nodes.get(n.id).state = Node.State.Infected;
+                            if((n.quarantined) || nodes.get(friendId).quarantined) {
+                                if(ThreadLocalRandom.current().nextDouble(1) > 0.4) {
+                                    meetAttempt++;
+                                    continue;
+                                }
+                            }
+                            graph.addEdge(ids.get(EdgeCounter), graph.getNode(n.id), graph.getNode(friendId));
+                            EdgeCounter++;
+                            nodes.get(n.id).contacts.add(nodes.get(friendId));
+                            nodes.get(friendId).contacts.add(nodes.get(n.id));
+                            meet = false;
+                            if (n.checkState() == Node.State.Infected || nodes.get(friendId).checkState() == Node.State.Infected) {
+                                if (nodes.get(friendId).resistance - Math.random() > 0.25) {
+                                    nodes.get(friendId).state = Node.State.Infected;
+                                    nodes.get(friendId).quarantined = false;
+                                }
+                                if (n.resistance - Math.random() > 0.25) {
+                                    nodes.get(n.id).state = Node.State.Infected;
+                                    nodes.get(n.id).quarantined = false;
+
+                                }
                             }
                         }
                     }
@@ -119,24 +130,29 @@ public class sim {
                     for(int s = 0; s < canMeet; s++){
                         int randomFriend = (int)(Math.random()*(n.friendList.size()-1));
                         int friendId = n.friendList.get(randomFriend).id;
-                        if(friendId == n.id) continue; //Kan ikke møte seg selv
-                        if((nodes.get(friendId).isolated || n.isolated) || (nodes.get(friendId).state == Node.State.Recovered) || (n.quarantined) || nodes.get(friendId).quarantined){
+                        if(friendId == n.id) continue; //cannot meet yourself
+                        if((nodes.get(friendId).isolated || n.isolated) || (nodes.get(friendId).state == Node.State.Recovered)){
                             continue;
                         }
-
-                        graph.addEdge(ids.get(EdgeCounter),graph.getNode(n.id),graph.getNode(friendId));
-                        EdgeCounter++;
-                        n.contacts.add(friendId);
-                        nodes.get(friendId).contacts.add(n.id);
-                        if(n.checkState() == Node.State.Infected || nodes.get(friendId).checkState() == Node.State.Infected) {
-                            if(nodes.get(friendId).resistance < 0) nodes.get(friendId).resistance = ThreadLocalRandom.current().nextDouble(0.65);
-
-                            if(1-nodes.get(friendId).resistance < 0.45){
-                                nodes.get(friendId).state = Node.State.Infected;
+                        if((n.quarantined) || nodes.get(friendId).quarantined) {
+                            if(ThreadLocalRandom.current().nextDouble(1) > 0.4) {
+                                continue;
                             }
-                            if(n.resistance < 0) n.resistance = ThreadLocalRandom.current().nextDouble(0.65);
-                            if(1-n.resistance < 0.45){
+                        }
+                        graph.addEdge(ids.get(EdgeCounter),graph.getNode(n.id),graph.getNode(friendId)); //Add graphical edge
+                        EdgeCounter++;
+
+                        nodes.get(n.id).contacts.add(nodes.get(friendId)); //add logical edge
+                        nodes.get(friendId).contacts.add(nodes.get(n.id));
+                        if(n.checkState() == Node.State.Infected || nodes.get(friendId).checkState() == Node.State.Infected) { //If any of the persons in a meet is infected
+
+                            if(nodes.get(friendId).resistance-Math.random() > 0.25){
+                                nodes.get(friendId).state = Node.State.Infected;
+                                nodes.get(friendId).quarantined = false;
+                            }
+                            if(n.resistance-Math.random() > 0.25){
                                 nodes.get(n.id).state = Node.State.Infected;
+                                nodes.get(n.id).quarantined = false;
                             }
                         }
                     }
@@ -155,20 +171,11 @@ public class sim {
                 });
                 if(!tempDeleted.isEmpty()) { //graph edge deletion og contact list removal på begge sider.
                     for(int q = 0; q < tempDeleted.size(); q++){
-                        int nId = tempDeleted.get(q).getNode0().getIndex();
-                        int fId = tempDeleted.get(q).getNode1().getIndex();
-                        String[] e = tempDeleted.get(q).toString().substring(10).split("[-]");
-                        for(int ad = 0; ad < e.length; ad++){
-                            e[ad] = e[ad].replaceAll("\\[", "").replaceAll("\\]","");;
-                        }
-                        if(valueOf(e[0]) == nId){
-                            nodes.get(nId).contacts.remove(valueOf(e[2]));
-                            nodes.get(fId).contacts.remove(valueOf(e[0]));
-                        }
-                        /*if(valueOf(e[0]) == fId){
-                            nodes.get(fId).contacts.remove(valueOf(e[2]));
-                            nodes.get(nId).contacts.remove(valueOf(e[0]));
-                        }*/
+                        Node n = nodes.get(tempDeleted.get(q).getNode0().getIndex());
+                        Node friend = nodes.get(tempDeleted.get(q).getNode1().getIndex());
+
+                        nodes.get(n.id).contacts.remove(nodes.get(friend.id));
+                        nodes.get(friend.id).contacts.remove(nodes.get(n.id));
                         graph.removeEdge(tempDeleted.get(q));
                     }
                 }
@@ -182,12 +189,14 @@ public class sim {
                         }
                     }
                 }
+                //System.out.println("Quarantine: " + quarantineNumber + " infected: " + infectedToday.size() + " infectedTotal: " + infectedTotal.size());
                 infectedTotal.addAll(infectedToday);
-               //System.out.println("Infected today: " + infectedToday.size()); //Dette skal skriver til .csv fil for å plotte til graf.
+               // System.out.println("Infected today: " + infectedToday.size()); //Dette skal skriver til .csv fil for å plotte til graf.
                 //System.out.println("Total infected: " + infectedTotal.size());
                 result.get(simRan).add(infectedToday.size());
             }
            //System.out.println("Total infected: " + infectedTotal.size());
+            System.out.println("Simulation done: " + simRan + " " + P);
         }
         return result;
     }

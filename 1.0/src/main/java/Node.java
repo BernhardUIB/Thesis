@@ -1,4 +1,3 @@
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Random;
@@ -14,19 +13,20 @@ public class Node {
     boolean hasPhone;
 
     enum State{Susceptible,Infected,Recovered} //SIR
-    ArrayList<Integer> contacts; //close contacts
+    ArrayList<Node> contacts; //close contacts
     ArrayList<Node> friendList;
     boolean quarantined;
     int quarantineTimer;
 
-    public Node(int id){
+    public Node(int id,boolean uniform){
         Random random = new Random();
         this.id = id;
         resistance = random.nextGaussian();
         state = State.Susceptible;
         infectedTime = 14;
-        friends = 4;
-        friendz = random.nextGaussian()*3.5+5;
+        friends = 9;
+        friendz = random.nextGaussian()*3.5+9; //3.5+2.5 for 3, 3.5+3.76 for 4, 3.5+4.9 for 5, 3.5+5.93 for 6, 3.5*6.98 for 7, 3.5*8 for 8, 3.5*9 for 9
+        quarantined = false;
         quarantineTimer = 14;
         contacts = new ArrayList<>();
         friendList = new ArrayList<>();
@@ -42,38 +42,33 @@ public class Node {
                 infectedTime = 14;
                 this.isolated = false;
             }
-            if((infectedTime > 0 && infectedTime <= 7) && (!hasPhone)){
-                if(infectedTime == 7){
-                    for(Node n: this.friendList){
-                        if(ThreadLocalRandom.current().nextDouble(1) > 0.2) {
-                            if (ThreadLocalRandom.current().nextDouble(1) > 0.6) {
-                                n.quarantined = true;
-                                n.quarantineTimer = 14;
-                            }
+            if((infectedTime > 0 && infectedTime <= 8)){
+                if(infectedTime == 8){
+                    for(Node n: this.contacts){
+                        if(n.state == State.Recovered) continue;
+                        if(n.quarantined) continue;
+                        if(ThreadLocalRandom.current().nextDouble(1) > 0.8) {
+                          n.quarantined = true;
                         }
                     }
                 }
                 this.isolated = true;
             }
-            if((infectedTime > 0 && infectedTime <= 8) && (hasPhone)){
-                if(infectedTime == 8){
-                    for(Node n: this.friendList){
-                        if(ThreadLocalRandom.current().nextDouble(1) > 0.4) {
-                            n.quarantined = true;
-                            n.quarantineTimer = 14;
-                        }
+            if((infectedTime > 0 && infectedTime <= 9) && (hasPhone)){
+                if(infectedTime == 9){
+                    for(Node n: this.contacts){
+                        if(n.state == State.Recovered) continue;
+                        if(n.hasPhone) n.quarantined = true;
                     }
                 }
                 this.isolated = true;
             }
         }
+
         if(quarantined){
             quarantineTimer--;
-            if(quarantineTimer ==0) quarantined = false;
+            if(quarantineTimer == 0) this.quarantined = false;
         }
-        //close contact duration
-        //quarantine duration
-        //infected duration
     }
 
     public State checkState(){
@@ -84,34 +79,22 @@ public class Node {
         }
         return state;
     }
-    public boolean isQuarantine(){
-        if(quarantined) return true;
-        return false;
-    }
     public int meetNumber(){
         if(friendList.size() == 0){
             return 0;
         }
         int a = ThreadLocalRandom.current().nextInt(0, friendList.size());
-        if((isolated || this.state == State.Recovered) ||(quarantined)){
+        if((isolated || this.state == State.Recovered)){
             return 0;
         }
         return a;
     }
+    public double setResistance(){
+        Double d = Math.abs(resistance);
+        String[] decimals = Double.toString(d).split("\\.");
+        if(Double.parseDouble(decimals[0]) >= 1.0) d = d - Double.parseDouble(decimals[0]);
+
+
+        return d;
+    }
 }
-
-/*
- edges til naboer(random generert i en range)
- state frisk/infected/(risikabel?)/immun
- (kanskje familie/jobb)
- alder (for å endre dødelighet, og vaksineringsstrat)
- smitteresistance (rng for gener) Gaussian-random
- binær ja/nei på om den har MCT eller ikke (alle har TCT default)
- smitteevne? Ha dette på edge? Gaussian-random
-
-
- en node skal kunne puttes i karantene (fjernes midlertidig ut av nettet)
- hastigheten på fra den er smittet til den er i karantene endres. Typ 3-5dager ved TCT, og 1-2dager MCT?
-
-
- */

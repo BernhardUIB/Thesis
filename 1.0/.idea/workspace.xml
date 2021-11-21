@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4e8aa123-c4bd-43f3-8d59-0780b334809e" name="Default Changelist" comment="Starting v1.0">
-      <change afterPath="$PROJECT_DIR$/../Graph/src/Graph.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/NodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/NodeGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main.java" afterDir="false" />
@@ -17,7 +16,6 @@
       <change beforePath="$PROJECT_DIR$/target/classes/NodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/NodeGenerator.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/sim.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/sim.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Graph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Graph/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -64,19 +62,23 @@
   </component>
   <component name="RunManager" selected="Application.main">
     <configuration name="main" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="$PROJECT_DIR$/../../Java/jdk-16.0.1" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="main" />
-      <module name="1.0" />
+      <module name="Graph" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -150,7 +152,12 @@
       <workItem from="1634222994624" duration="28515000" />
       <workItem from="1634305104532" duration="9710000" />
       <workItem from="1634488200606" duration="35515000" />
-      <workItem from="1634671605536" duration="35610000" />
+      <workItem from="1634671605536" duration="44222000" />
+      <workItem from="1634883604478" duration="42352000" />
+      <workItem from="1635006738496" duration="13150000" />
+      <workItem from="1635063014868" duration="3320000" />
+      <workItem from="1635079342677" duration="59383000" />
+      <workItem from="1636788950758" duration="26265000" />
     </task>
     <task id="LOCAL-00001" summary="Starting v1.0">
       <created>1622191720426</created>
@@ -166,11 +173,28 @@
       <option name="project" value="LOCAL" />
       <updated>1622191733644</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Starting v1.0">
+      <created>1634810688282</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634810688282</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
