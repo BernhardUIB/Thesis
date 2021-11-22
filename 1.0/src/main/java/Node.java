@@ -24,8 +24,8 @@ public class Node {
         resistance = random.nextGaussian();
         state = State.Susceptible;
         infectedTime = 14;
-        friends = 9;
-        friendz = random.nextGaussian()*3.5+9; //3.5+2.5 for 3, 3.5+3.76 for 4, 3.5+4.9 for 5, 3.5+5.93 for 6, 3.5*6.98 for 7, 3.5*8 for 8, 3.5*9 for 9
+        friends = 5;
+        friendz = random.nextGaussian()*3.5+4.9; //3.5+2.5 for 3, 3.5+3.76 for 4, 3.5+4.9 for 5, 3.5+5.93 for 6, 3.5*6.98 for 7, 3.5*8 for 8,
         quarantined = false;
         quarantineTimer = 14;
         contacts = new ArrayList<>();

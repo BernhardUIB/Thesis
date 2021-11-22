@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class main {
     public static void main(String[] args) {
-        for (int z = 4500; z <= 5000; z+=500) { //Loop through with varying number of uptake
+        for (int z = 0; z <= 5000; z+=500) { //Loop through with varying number of uptake
             sim Simulation = new sim(5000, 4, z, 50, true);
             // sim Simulation2 = new sim(400,20,20,1); You can potentially create multiple simulations
             int runNumb = 1000; //Number of times to be ran
@@ -34,7 +34,7 @@ public class main {
         }
     }
     public static void writeAudit(double average, double[] averagesPerDay,int N, int I, int P, int T, int runNumb,boolean uniform) {
-        File whereWrite = new File("D:\\Bernhard\\Documents\\CSV\\NewResFriends9.csv");
+        File whereWrite = new File("D:\\Bernhard\\Documents\\CSV\\NewResFriends5.csv"); //You would need to change this file path to somewhere you want to write your results
 
         try {
             FileWriter fw = new FileWriter(whereWrite, true);
